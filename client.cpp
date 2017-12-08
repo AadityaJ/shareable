@@ -1,25 +1,26 @@
-#include "includes/mClient.h"
+#include "includes/shareable.h"
 #define VNAME(x) #x
-/*class share{
-    string str;
+class intShare: public shareDS{
+    int val;
 public:
-    share(string str){this->str=str;}
+    intShare(int val){this->val=val;}
     string to_str(){
-        return str;
+        return to_string(val);
     }
-};*/
+};
+class stringShare: public shareDS{
+    string val;
+public:
+    stringShare(string val){this->val=val;}
+    string to_str(){
+        return val;
+    }
+};
 int main(int argc, char const *argv[]) {
-    Client c(8000);
-    int a=5;
-    double b=15.00;
-    string snd(VNAME(a));
-    snd+=(","+to_string(a));
-    c.Send(snd);
-    string snd2(VNAME(b));
-    snd2+=(","+to_string(b));
-    Client c2(8000);
-    c2.Send(snd2);
-    Client c3(8000);
-    c3.Send(snd2);
+    intShare a(10);
+    stringShare b("Hello world");
+    Share s(8000);
+    s.add<intShare>(a,VNAME(a));
+    s.add<stringShare>(b,VNAME(b));
     return 0;
 }

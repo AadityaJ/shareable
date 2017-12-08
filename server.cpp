@@ -1,9 +1,10 @@
 #include "includes/mServer.h"
 #include "includes/state.h"
-class shareDS{
+#include "includes/shareable.h"
+class stringShare: public shareDS{
     string val;
 public:
-    shareDS(string val){this->val=val;}
+    stringShare(string val){this->val=val;}
     string to_str(){
         return val;
     }
@@ -19,15 +20,15 @@ pair<string,string> split(string a){
 int main(int argc, char const *argv[]) {
     Server s;
     s.listen_(8000);
-    state<shareDS,string> st;
+    state<stringShare ,string> st;
     while(1){
         string recv=s.receive();
         //cout<<recv<<endl;
         pair<string,string>prv=split(recv);
-        shareDS obj(prv.first);
+        stringShare obj(prv.first);
         cout<<"ADDED: "<<obj.to_str()<<" "<<prv.second<<endl;
         st.add(obj,prv.second);
-        //cout<<st.seek(obj);
+        cout<<st.seek(obj)<<endl;
     }
     return 0;
 }
