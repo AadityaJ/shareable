@@ -23,5 +23,9 @@ int main(int argc, char const *argv[]) {
     s.add<stringShare>(b,VNAME(b));
     a.val++;
     s.add<intShare>(a,VNAME(a));
+    a.val++;
+    s.add<intShare>(a,VNAME(a));
+    b.val="hello";
+    s.add<stringShare>(b,VNAME(b));
     return 0;
 }

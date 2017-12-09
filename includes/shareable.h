@@ -3,6 +3,7 @@
 #define VNAME(x) #x
 class shareDS{
 public:
+    map<string,long> freqVar;
     virtual string to_str()=0;
 };
 class Share{
