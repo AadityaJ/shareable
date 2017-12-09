@@ -1,16 +1,15 @@
 #include "includes/shareable.h"
-#define VNAME(x) #x
 class intShare: public shareDS{
-    int val;
 public:
+    int val;
     intShare(int val){this->val=val;}
     string to_str(){
         return to_string(val);
     }
 };
 class stringShare: public shareDS{
-    string val;
 public:
+    string val;
     stringShare(string val){this->val=val;}
     string to_str(){
         return val;
@@ -22,5 +21,7 @@ int main(int argc, char const *argv[]) {
     Share s(8000);
     s.add<intShare>(a,VNAME(a));
     s.add<stringShare>(b,VNAME(b));
+    a.val++;
+    s.add<intShare>(a,VNAME(a));
     return 0;
 }

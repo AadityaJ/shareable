@@ -1,5 +1,6 @@
 #include <string>
 #include "mClient.h"
+#define VNAME(x) #x
 class shareDS{
 public:
     virtual string to_str()=0;
