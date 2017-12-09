@@ -18,6 +18,7 @@ pair<string,string> split(string a){
 	return make_pair(temp1,temp2);
 }
 int main(int argc, char const *argv[]) {
+    map<string,int> freqVar;
     Server s;
     s.listen_(8000);
     state<stringShare ,string> st;
@@ -25,8 +26,10 @@ int main(int argc, char const *argv[]) {
         string recv=s.receive();
         //cout<<recv<<endl;
         pair<string,string>prv=split(recv);
+        freqVar[prv.first]++;
         stringShare obj(prv.first);
         cout<<"ADDED: "<<obj.to_str()<<" "<<prv.second<<endl;
+        cout<<"FREQ OF: "<<obj.to_str()<<" "<<prv.first<<endl;
         st.add(obj,prv.second);
         cout<<st.seek(obj)<<endl;
     }
